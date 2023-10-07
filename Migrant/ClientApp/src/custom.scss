@@ -1,0 +1,122 @@
+@import "styles/mixins";
+
+@font-face {
+  font-family: "SanFrancisco";
+  src: url("./assets/fonts/SanFrancisco/SFUIDisplayRegular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SanFrancisco";
+  src: url("./assets/fonts/SanFrancisco/SFUIDisplayMedium.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Provide sufficient contrast against white background */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SanFrancisco";
+  background: #fbfcfe;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.desktop-only {
+  @include responsive(xl) {
+    display: none !important;
+  }
+}
+
+.main-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.shadow-container {
+  padding: 12px 24px;
+  box-shadow: 0 0 24px rgba(174, 173, 179, 0.5);
+
+  @include responsive(md) {
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+.wrapper {
+  width: fit-content;
+  margin: 30px auto 0;
+}
+
+.title {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 15px;
+
+  @include responsive(md) {
+    text-align: center;
+    padding-left: 0;
+  }
+}
+
+.concerning {
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  margin: 5px 0px;
+}
+
+.common {
+  font-size:  20px;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 10px;
+
+  @include responsive(md) {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+.list{
+  list-style-type: square;
+  padding-left: 5em;
+  line-height: 140%;
+
+  @include responsive(md) {
+    padding-left: 14px;
+  }
+}
+
+.page-icon {
+  height: 120px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

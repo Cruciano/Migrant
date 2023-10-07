@@ -1,0 +1,44 @@
+.block {
+  & p {
+    font-size: 12px;
+    padding-bottom: 2px;
+  }
+
+  & > *, & input {
+    width: 100%;
+  }
+
+  & input, & textarea {
+    font-family: "SanFrancisco";
+    font-size: 14px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #edeef0;
+
+  &>* {
+    flex-grow: 1;
+  }
+}
+
+.element {
+  padding: 4px;
+  text-align: center;
+  font-size: 14px;
+  color: black;
+  background-color: #edeef0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: .2s all ease-in-out;
+
+  &.active {
+    background-color: #9a398e;
+    color: white;
+  }
+}
