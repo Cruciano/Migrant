@@ -11,11 +11,11 @@ namespace MigrantIdentity;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMigrantIdentity(this IServiceCollection services)
+    public static IServiceCollection AddMigrantIdentity(this IServiceCollection services, string connectionString)
     {
         services
             .AddDbContext<MigrantIdentityContext>(
-            opt => opt.UseSqlite("Filename=d:/diplom/migrantdb.db"))
+            opt => opt.UseSqlite(connectionString))
             .AddIdentity<IdentityUser, IdentityRole>(o =>
             {
                 o.Password.RequireDigit = false;

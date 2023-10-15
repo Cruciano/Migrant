@@ -1,4 +1,7 @@
+using MigrantCore;
 using MigrantIdentity;
+
+var connectionString = "Filename=d:/diplom/migrantdb4.db";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddMigrantIdentity();
+builder.Services.AddMigrantIdentity(connectionString);
+builder.Services.AddMigrantCore(connectionString);
 
 var app = builder.Build();
 

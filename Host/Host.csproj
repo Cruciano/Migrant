@@ -15,6 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MediatR" Version="12.1.1" />
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.9"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.11" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
@@ -32,6 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MigrantCore\MigrantCore.csproj" />
       <ProjectReference Include="..\MigrantIdentity\MigrantIdentity.csproj" />
     </ItemGroup>
 
