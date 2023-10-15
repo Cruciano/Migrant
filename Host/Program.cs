@@ -1,7 +1,7 @@
 using MigrantCore;
 using MigrantIdentity;
 
-var connectionString = "Filename=d:/diplom/migrantdb4.db";
+var connectionString = "Filename=d:/diplom/migrantdb.db";
 
 var builder = WebApplication.CreateBuilder(args);
 
