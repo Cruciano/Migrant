@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MigrantCore.RegistrationPlaces;
 
 [ApiController]
-[Route("places")]
+[Route("registration-places")]
 public class RegistrationPlaceController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -16,6 +16,7 @@ public class RegistrationPlaceController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<RegistrationPlaceModel[]> GetAll(CancellationToken cancellationToken)
     {
         var places = await _mediator.Send(new ListRegistrationPlaces(), cancellationToken);
