@@ -31,14 +31,6 @@ public class LoginHandler : IRequestHandler<Login, LoginResult>
     
     public async Task<LoginResult> Handle(Login request, CancellationToken cancellationToken)
     {
-        /* var newUser = new IdentityUser
-        {
-            Email = "qwerty@gmail.com",
-            UserName = request.Username
-        };
-        
-        await _userManager.CreateAsync(newUser, request.Password); */
-        
         var user = await _signInManager.UserManager.FindByNameAsync(request.Username);
 
         if (user is null)
@@ -78,3 +70,11 @@ public class LoginHandler : IRequestHandler<Login, LoginResult>
         return (tokenHandler.WriteToken(token), expires);
     }
 }
+
+/* var newUser = new IdentityUser
+{
+    Email = "qwerty@gmail.com",
+    UserName = request.Username
+};
+
+await _userManager.CreateAsync(newUser, request.Password); */

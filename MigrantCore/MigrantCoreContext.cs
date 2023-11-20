@@ -6,6 +6,7 @@ namespace MigrantCore;
 public class MigrantCoreContext  : DbContext
 {
     public DbSet<RegistrationPlace> Places { get; set; }
+    public DbSet<Person> Persons { get; set; }
     
     public MigrantCoreContext(DbContextOptions<MigrantCoreContext> options) : base(options)
     {

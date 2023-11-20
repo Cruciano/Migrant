@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MigrantCore.RegistrationPlaces;
 
 [ApiController]
-[Route("registration-places")]
+[Route("api/registration-places")]
 public class RegistrationPlaceController : ControllerBase
 {
     private readonly IMediator _mediator;
