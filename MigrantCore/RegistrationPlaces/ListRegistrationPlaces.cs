@@ -1,17 +1,11 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MigrantCore.Persons.Models;
+using MigrantCore.RegistrationPlaces.Requests;
 
 namespace MigrantCore.RegistrationPlaces;
 
-public class ListRegistrationPlaces : IRequest<RegistrationPlaceModel[]> { }
-
-public class RegistrationPlaceModel
-{
-    public int Id { get; set; }
-    public string Place { get; set; }
-}
-
-public class ListRegistrationPlacesHandler : IRequestHandler<ListRegistrationPlaces, RegistrationPlaceModel[]>
+public class ListRegistrationPlacesHandler : IRequestHandler<ListRegistrationPlacesRequest, RegistrationPlaceModel[]>
 {
     private readonly MigrantCoreContext _context;
     
@@ -20,15 +14,15 @@ public class ListRegistrationPlacesHandler : IRequestHandler<ListRegistrationPla
         _context = context;
     }
 
-    public async Task<RegistrationPlaceModel[]> Handle(ListRegistrationPlaces request,
+    public async Task<RegistrationPlaceModel[]> Handle(ListRegistrationPlacesRequest request,
         CancellationToken cancellationToken)
     {
         var places = await _context.Places.ToListAsync(cancellationToken);
 
-        var data = places.Select(x => new RegistrationPlaceModel
+        var data = places.Select(_ => new RegistrationPlaceModel
         {
-            Id = x.Id,
-            Place = x.Place,
+            Id = _.Id,
+            Place = _.Place,
         }).ToArray();
 
         return data;

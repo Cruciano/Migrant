@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MigrantCore.Persons.Models;
+using MigrantCore.Persons.Requests;
 
 namespace MigrantCore.Persons;
 
@@ -15,45 +16,46 @@ public class PersonController : ControllerBase
     {
         _mediator = mediator;
     }
-
-    [HttpPut]
-    [Authorize]
-    public async Task<ActionResult<int>> Create([FromBody] CreatePerson request, CancellationToken cancellationToken)
-    {
-        var id = await _mediator.Send(request, cancellationToken);
-        return id;
-    }
     
-    [HttpPost]
-    [Authorize]
-    public async Task<ActionResult> Update([FromBody] EditPerson request, CancellationToken cancellationToken)
+    [HttpGet]
+    public async Task<ActionResult<PeoplePage>> GetAllAsync([FromQuery] ListPeopleRequest request, CancellationToken cancellationToken)
     {
-        var success = await _mediator.Send(request, cancellationToken);
-
-        if (!success)
-        {
-            return NotFound();
-        }
-        return Ok();
+        var peoplePage = await _mediator.Send(request, cancellationToken);
+        
+        return peoplePage;
     }
     
     [HttpGet("{id:int}")]
     [Authorize]
-    public async Task<ActionResult<PersonModel>> Get([FromRoute] int id, CancellationToken cancellationToken)
+    public async Task<ActionResult<PersonModel>> GetAsync([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var request = new GetPerson { Id = id };
+        var request = new GetPersonRequest { Id = id };
         var result = await _mediator.Send(request, cancellationToken);
 
-        if (result == null)
+        if (result is null)
             return NotFound();
         
         return result;
     }
-    
-    [HttpGet]
-    public async Task<ActionResult<PagedPeople>> GetAll([FromQuery] ListPeople request, CancellationToken cancellationToken)
+
+    [HttpPost]
+    [Authorize]
+    public async Task<ActionResult<int>> CreateAsync([FromBody] CreatePersonRequest request, CancellationToken cancellationToken)
     {
-        var peoplePage = await _mediator.Send(request, cancellationToken);
-        return peoplePage;
+        var id = await _mediator.Send(request, cancellationToken);
+        
+        return id;
+    }
+    
+    [HttpPut]
+    [Authorize]
+    public async Task<ActionResult> UpdateAsync([FromBody] EditPersonRequest request, CancellationToken cancellationToken)
+    {
+        var success = await _mediator.Send(request, cancellationToken);
+
+        if (!success)
+            return NotFound();
+        
+        return Ok();
     }
 }

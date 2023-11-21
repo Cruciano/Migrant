@@ -1,4 +1,4 @@
-namespace MigrantCore.Persons.Models;
+namespace MigrantCore.RegistrationPlaces.Models;
 
 public record RegistrationPlaceModel
 {

@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MigrantCore.Persons.Models;
+using MigrantCore.RegistrationPlaces.Requests;
 
 namespace MigrantCore.RegistrationPlaces;
 
@@ -17,9 +19,10 @@ public class RegistrationPlaceController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public async Task<RegistrationPlaceModel[]> GetAll(CancellationToken cancellationToken)
+    public async Task<RegistrationPlaceModel[]> GetAllAsync(CancellationToken cancellationToken)
     {
-        var places = await _mediator.Send(new ListRegistrationPlaces(), cancellationToken);
+        var places = await _mediator.Send(new ListRegistrationPlacesRequest(), cancellationToken);
+        
         return places;
     }
 }

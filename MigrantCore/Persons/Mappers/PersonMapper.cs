@@ -1,4 +1,5 @@
 using MigrantCore.Entities;
+using MigrantCore.Entities.Enums;
 using MigrantCore.Persons.Models;
 
 namespace MigrantCore.Persons.Mappers;
